@@ -3,16 +3,11 @@
 less is a web framework written in Go (Golang).
 less is more.
 
-## Table of Contents
-
-- [Installation](#background)
-- [Quick start](#install)
-
 ## Installation
 
 To install Gin package, you need to install Go and set your Go workspace first.
 
-1. You first need [Go](https://golang.org/) installed (**version 1.14+ is required**), then you can use the below Go command to install Gin.
+1. You first need [Go](https://golang.org/) installed (**version 1.16+ is required**), then you can use the below Go command to install Gin.
 
 ```sh
 $ go get -u https://github.com/BugKillerPro/less
@@ -24,35 +19,32 @@ $ go get -u https://github.com/BugKillerPro/less
 import "https://github.com/BugKillerPro/less"
 ```
 
-3. (Optional) Import `net/http`. This is required for example if using constants such as `http.StatusOK`.
-
-```go
-import "net/http"
-```
-
 ## Quick start
 
-```sh
-# assume the following codes in example.go file
-$ cat example.go
-```
 
 ```go
 package main
 
 import (
-	"net/http"
-
-	"https://github.com/BugKillerPro/less"
+    "github.com/BugKillerPro/less/app/console"
+    "github.com/BugKillerPro/less/app/http"
+    "github.com/BugKillerPro/less/framework"
+    "github.com/BugKillerPro/less/framework/provider/app"
+    "github.com/BugKillerPro/less/framework/provider/kernel"
 )
 
 func main() {
-	//r := gin.Default()
-	//r.GET("/ping", func(c *gin.Context) {
-	//	c.JSON(http.StatusOK, gin.H{
-	//		"message": "pong",
-	//	})
-	//})
-	//r.Run() // listen and serve on 0.0.0.0:8080 (for windows "localhost:8080")
+    // 初始化服务容器
+    container := framework.NewlessContainer()
+    // 绑定App服务提供者
+    container.Bind(&app.LessAppProvider{})
+
+    // 将HTTP引擎初始化,并且作为服务提供者绑定到服务容器中
+    if engine, err := http.NewHttpEngine(container); err == nil {
+        container.Bind(&kernel.LessKernelProvider{HttpEngine: engine})
+    }
+
+    // 运行root命令
+    console.RunCommand(container)
 }
 ```
