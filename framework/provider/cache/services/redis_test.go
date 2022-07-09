@@ -24,10 +24,10 @@ func (b *Bar) UnmarshalBinary(bt []byte) error {
 	return json.Unmarshal(bt, b)
 }
 
-func TestlessRedisService_Load(t *testing.T) {
+func TestLessRedisService_Load(t *testing.T) {
 	container := tests.InitBaseContainer()
-	container.Bind(&config.lessConfigProvider{})
-	container.Bind(&log.lessLogServiceProvider{})
+	container.Bind(&config.LessConfigProvider{})
+	container.Bind(&log.LessLogServiceProvider{})
 
 	Convey("test get client", t, func() {
 		it, err := NewRedisCache(container)

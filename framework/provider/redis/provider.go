@@ -11,7 +11,7 @@ type RedisProvider struct {
 
 // Register 注册方法
 func (h *RedisProvider) Register(container framework.Container) framework.NewInstance {
-	return NewlessRedis
+	return NewLessRedis
 }
 
 // Boot 启动调用

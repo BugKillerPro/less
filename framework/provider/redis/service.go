@@ -7,20 +7,20 @@ import (
     "sync"
 )
 
-// lessRedis 代表less框架的redis实现
-type lessRedis struct {
+// LessRedis 代表less框架的redis实现
+type LessRedis struct {
     container framework.Container      // 服务容器
     clients   map[string]*redis.Client // key为uniqKey, value为redis.Client (连接池）
 
     lock *sync.RWMutex
 }
 
-// NewlessRedis 代表实例化Client
-func NewlessRedis(params ...interface{}) (interface{}, error) {
+// NewLessRedis 代表实例化Client
+func NewLessRedis(params ...interface{}) (interface{}, error) {
     container := params[0].(framework.Container)
     clients := make(map[string]*redis.Client)
     lock := &sync.RWMutex{}
-    return &lessRedis{
+    return &LessRedis{
         container: container,
         clients:   clients,
         lock:      lock,
@@ -28,7 +28,7 @@ func NewlessRedis(params ...interface{}) (interface{}, error) {
 }
 
 // GetClient 获取Client实例
-func (app *lessRedis) GetClient(option ...contract.RedisOption) (*redis.Client, error) {
+func (app *LessRedis) GetClient(option ...contract.RedisOption) (*redis.Client, error) {
     // 读取默认配置
     config := GetBaseConfig(app.container)
 

@@ -13,8 +13,8 @@ import (
 
 func TestlessMemoryService_Load(t *testing.T) {
 	container := tests.InitBaseContainer()
-	container.Bind(&config.lessConfigProvider{})
-	container.Bind(&log.lessLogServiceProvider{})
+	container.Bind(&config.LessConfigProvider{})
+	container.Bind(&log.LessLogServiceProvider{})
 
 	Convey("test get client", t, func() {
 		it, err := NewMemoryCache(container)

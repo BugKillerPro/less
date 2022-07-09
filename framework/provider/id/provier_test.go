@@ -12,9 +12,9 @@ import (
 func TestConsoleLog_Normal(t *testing.T) {
 	Convey("test less console log normal case", t, func() {
 		c := tests.InitBaseContainer()
-		c.Bind(&config.lessConfigProvider{})
+		c.Bind(&config.LessConfigProvider{})
 
-		err := c.Bind(&lessIDProvider{})
+		err := c.Bind(&LessIDProvider{})
 		So(err, ShouldBeNil)
 
 		idService := c.MustMake(contract.IDKey).(contract.IDService)

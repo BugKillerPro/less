@@ -16,10 +16,10 @@ func TestlessConfig_Normal(t *testing.T) {
 	Convey("test less config normal case", t, func() {
 		basePath := tests.BasePath
 		c := framework.NewlessContainer()
-		c.Bind(&app.lessAppProvider{BaseFolder: basePath})
-		c.Bind(&env.lessEnvProvider{})
+		c.Bind(&app.LessAppProvider{BaseFolder: basePath})
+		c.Bind(&env.LessEnvProvider{})
 
-		err := c.Bind(&lessConfigProvider{})
+		err := c.Bind(&LessConfigProvider{})
 		So(err, ShouldBeNil)
 
 		conf := c.MustMake(contract.ConfigKey).(contract.Config)

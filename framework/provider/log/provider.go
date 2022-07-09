@@ -10,8 +10,8 @@ import (
 	"github.com/BugKillerPro/less/framework/provider/log/services"
 )
 
-// lessLogServiceProvider 服务提供者
-type lessLogServiceProvider struct {
+// LessLogServiceProvider 服务提供者
+type LessLogServiceProvider struct {
 	framework.ServiceProvider
 
 	Driver string // Driver
@@ -27,7 +27,7 @@ type lessLogServiceProvider struct {
 }
 
 // Register 注册一个服务实例
-func (l *lessLogServiceProvider) Register(c framework.Container) framework.NewInstance {
+func (l *LessLogServiceProvider) Register(c framework.Container) framework.NewInstance {
 	if l.Driver == "" {
 		tcs, err := c.Make(contract.ConfigKey)
 		if err != nil {
@@ -55,17 +55,17 @@ func (l *lessLogServiceProvider) Register(c framework.Container) framework.NewIn
 }
 
 // Boot 启动的时候注入
-func (l *lessLogServiceProvider) Boot(c framework.Container) error {
+func (l *LessLogServiceProvider) Boot(c framework.Container) error {
 	return nil
 }
 
 // IsDefer 是否延迟加载
-func (l *lessLogServiceProvider) IsDefer() bool {
+func (l *LessLogServiceProvider) IsDefer() bool {
 	return false
 }
 
 // Params 定义要传递给实例化方法的参数
-func (l *lessLogServiceProvider) Params(c framework.Container) []interface{} {
+func (l *LessLogServiceProvider) Params(c framework.Container) []interface{} {
 	// 获取configService
 	configService := c.MustMake(contract.ConfigKey).(contract.Config)
 
@@ -94,7 +94,7 @@ func (l *lessLogServiceProvider) Params(c framework.Container) []interface{} {
 }
 
 // Name 定义对应的服务字符串凭证
-func (l *lessLogServiceProvider) Name() string {
+func (l *LessLogServiceProvider) Name() string {
 	return contract.LogKey
 }
 

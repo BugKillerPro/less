@@ -25,22 +25,22 @@ func main() {
 	// 初始化服务容器
 	container := framework.NewlessContainer()
 	// 绑定App服务提供者
-	container.Bind(&app.lessAppProvider{})
+	container.Bind(&app.LessAppProvider{})
 	// 后续初始化需要绑定的服务提供者...
-	container.Bind(&env.lessEnvProvider{})
+	container.Bind(&env.LessEnvProvider{})
 	container.Bind(&distributed.LocalDistributedProvider{})
-	container.Bind(&config.lessConfigProvider{})
-	container.Bind(&id.lessIDProvider{})
-	container.Bind(&trace.lessTraceProvider{})
-	container.Bind(&log.lessLogServiceProvider{})
+	container.Bind(&config.LessConfigProvider{})
+	container.Bind(&id.LessIDProvider{})
+	container.Bind(&trace.LessTraceProvider{})
+	container.Bind(&log.LessLogServiceProvider{})
 	container.Bind(&orm.GormProvider{})
 	container.Bind(&redis.RedisProvider{})
-	container.Bind(&cache.lessCacheProvider{})
+	container.Bind(&cache.LessCacheProvider{})
 	container.Bind(&ssh.SSHProvider{})
 
 	// 将HTTP引擎初始化,并且作为服务提供者绑定到服务容器中
 	if engine, err := http.NewHttpEngine(container); err == nil {
-		container.Bind(&kernel.lessKernelProvider{HttpEngine: engine})
+		container.Bind(&kernel.LessKernelProvider{HttpEngine: engine})
 	}
 
 	// 运行root命令

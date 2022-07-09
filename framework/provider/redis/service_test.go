@@ -12,13 +12,13 @@ import (
 
 func TestlessService_Load(t *testing.T) {
 	container := tests.InitBaseContainer()
-	container.Bind(&config.lessConfigProvider{})
-	container.Bind(&log.lessLogServiceProvider{})
+	container.Bind(&config.LessConfigProvider{})
+	container.Bind(&log.LessLogServiceProvider{})
 
 	Convey("test get client", t, func() {
-		lessRedis, err := NewlessRedis(container)
+		lessRedis, err := NewLessRedis(container)
 		So(err, ShouldBeNil)
-		service, ok := lessRedis.(*lessRedis)
+		service, ok := lessRedis.(*LessRedis)
 		So(ok, ShouldBeTrue)
 		client, err := service.GetClient(WithConfigPath("redis.write"))
 		So(err, ShouldBeNil)

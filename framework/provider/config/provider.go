@@ -6,25 +6,25 @@ import (
 	"path/filepath"
 )
 
-type lessConfigProvider struct{}
+type LessConfigProvider struct{}
 
 // Register registe a new function for make a service instance
-func (provider *lessConfigProvider) Register(c framework.Container) framework.NewInstance {
+func (provider *LessConfigProvider) Register(c framework.Container) framework.NewInstance {
 	return NewlessConfig
 }
 
 // Boot will called when the service instantiate
-func (provider *lessConfigProvider) Boot(c framework.Container) error {
+func (provider *LessConfigProvider) Boot(c framework.Container) error {
 	return nil
 }
 
 // IsDefer define whether the service instantiate when first make or register
-func (provider *lessConfigProvider) IsDefer() bool {
+func (provider *LessConfigProvider) IsDefer() bool {
 	return false
 }
 
 // Params define the necessary params for NewInstance
-func (provider *lessConfigProvider) Params(c framework.Container) []interface{} {
+func (provider *LessConfigProvider) Params(c framework.Container) []interface{} {
 	appService := c.MustMake(contract.AppKey).(contract.App)
 	envService := c.MustMake(contract.EnvKey).(contract.Env)
 	env := envService.AppEnv()
@@ -35,6 +35,6 @@ func (provider *lessConfigProvider) Params(c framework.Container) []interface{} 
 }
 
 /// Name define the name for this service
-func (provider *lessConfigProvider) Name() string {
+func (provider *LessConfigProvider) Name() string {
 	return contract.ConfigKey
 }

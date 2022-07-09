@@ -10,7 +10,7 @@ import (
 
 func TestlessConfig_Load(t *testing.T) {
 	container := tests.InitBaseContainer()
-	container.Bind(&config.lessConfigProvider{})
+	container.Bind(&config.LessConfigProvider{})
 
 	Convey("test config", t, func() {
 		configService := container.MustMake(contract.ConfigKey).(contract.Config)

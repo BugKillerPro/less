@@ -10,13 +10,13 @@ import (
 
 func TestlessSSHService_Load(t *testing.T) {
 	container := tests.InitBaseContainer()
-	container.Bind(&config.lessConfigProvider{})
-	container.Bind(&log.lessLogServiceProvider{})
+	container.Bind(&config.LessConfigProvider{})
+	container.Bind(&log.LessLogServiceProvider{})
 
 	Convey("test get client", t, func() {
-		lessRedis, err := NewlessSSH(container)
+		LessRedis, err := NewlessSSH(container)
 		So(err, ShouldBeNil)
-		service, ok := lessRedis.(*lessSSH)
+		service, ok := LessRedis.(*lessSSH)
 		So(ok, ShouldBeTrue)
 		client, err := service.GetClient(WithConfigPath("ssh.web-01"))
 		So(err, ShouldBeNil)
