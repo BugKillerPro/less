@@ -5,9 +5,9 @@ less is more.
 
 ## Installation
 
-To install Gin package, you need to install Go and set your Go workspace first.
+To install less package, you need to install Go and set your Go workspace first.
 
-1. You first need [Go](https://golang.org/) installed (**version 1.16+ is required**), then you can use the below Go command to install Gin.
+1. You first need [Go](https://golang.org/) installed (**version 1.16+ is required**), then you can use the below Go command to install less.
 
 ```sh
 $ go get -u https://github.com/BugKillerPro/less
